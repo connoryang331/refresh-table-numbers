@@ -1,0 +1,10 @@
+{
+	"id": "refresh-table-numbers",
+	"name": "Refresh Table Numbers",
+	"version": "1.0.0",
+	"description": "Refresh markdown table number rows ",
+	"author": "You",
+	"authorUrl": "",
+	"isDesktopOnly": false,
+	"minAppVersion": "0.15.0"
+}
