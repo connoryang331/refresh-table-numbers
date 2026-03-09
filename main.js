@@ -46,10 +46,6 @@ var RefreshTableNumbersPlugin = class extends import_obsidian.Plugin {
       id: "refresh-table-numbers",
       name: "Refresh Table Numbers",
       editorCallback: (editor) => {
-        if (this.isProcessing) {
-          console.log("Refresh Table Numbers: Already processing, skipping command execution...");
-          return;
-        }
         this.refreshAllTables(editor);
       }
     });
@@ -94,21 +90,16 @@ var RefreshTableNumbersPlugin = class extends import_obsidian.Plugin {
           const isFirstColEmpty = /^\|\s*\|/.test(header);
           const firstColMatch = header.match(/^\|\s*(\S.*?)\s*\|/);
           if (isFirstColEmpty) {
-            console.log("Case: First column is empty, adding/replacing numbers...");
-            console.log(`Separator before: "${lines[sepLine]}"`);
             const align = this.settings.align;
             let firstColSep = ":---:";
-            if (align === "left")
-              firstColSep = ":---";
-            else if (align === "right")
-              firstColSep = "---:";
+            if (align === "left") firstColSep = ":---";
+            else if (align === "right") firstColSep = "---:";
             const sepMatch = lines[sepLine].match(/^(\|\s*)[:-]+(\s*\|.*$)/);
             if (sepMatch) {
               lines[sepLine] = `${sepMatch[1]}${firstColSep}${sepMatch[2]}`;
             } else {
               lines[sepLine] = lines[sepLine].replace(/^(\|\s*)[:-]+(\s*\|)/, `$1${firstColSep}$2`);
             }
-            console.log(`Separator after: "${lines[sepLine]}"`);
             let num = 1;
             for (let j2 = sepLine + 1; j2 <= endLine; j2++) {
               if (lines[j2] && lines[j2].startsWith("|")) {
@@ -127,10 +118,8 @@ var RefreshTableNumbersPlugin = class extends import_obsidian.Plugin {
             if (firstColContent === settingsHeader) {
               const align = this.settings.align;
               let firstColSep = ":---:";
-              if (align === "left")
-                firstColSep = ":---";
-              else if (align === "right")
-                firstColSep = "---:";
+              if (align === "left") firstColSep = ":---";
+              else if (align === "right") firstColSep = "---:";
               const sepMatch = lines[sepLine].match(/^(\|\s*)[:-]+(\s*\|.*$)/);
               if (sepMatch) {
                 lines[sepLine] = `${sepMatch[1]}${firstColSep}${sepMatch[2]}`;
@@ -156,10 +145,8 @@ var RefreshTableNumbersPlugin = class extends import_obsidian.Plugin {
             } else {
               const align = this.settings.align;
               let firstColSep = ":---:";
-              if (align === "left")
-                firstColSep = ":---";
-              else if (align === "right")
-                firstColSep = "---:";
+              if (align === "left") firstColSep = ":---";
+              else if (align === "right") firstColSep = "---:";
               const headerText = this.settings.columnHeader || "";
               lines[headerLine] = `| ${headerText} ` + lines[headerLine];
               const sepMatch2 = lines[sepLine].match(/^(\|\s*)[:-]+(\s*\|.*$)/);
@@ -178,23 +165,27 @@ var RefreshTableNumbersPlugin = class extends import_obsidian.Plugin {
             }
             tableCount++;
           }
-          i = endLine + 1;
-        } else {
-          i++;
         }
+        const nextPos = Math.max(i + 1, endLine + 1);
+        if (nextPos <= i) {
+          i++;
+        } else {
+          i = nextPos;
+        }
+      } else {
+        i++;
       }
-      const doc = editor.getDoc();
-      const fullContent = lines.join("\n");
-      doc.setValue(fullContent);
-      if (tableCount > 0) {
-        console.log(`Refreshed ${tableCount} table(s)`);
-      }
-      setTimeout(() => {
-        this.isProcessing = false;
-      }, 100);
     }
+    const doc = editor.getDoc();
+    const fullContent = lines.join("\n");
+    doc.setValue(fullContent);
+    if (tableCount > 0) {
+      console.log(`Refreshed ${tableCount} table(s)`);
+    }
+    setTimeout(() => {
+      this.isProcessing = false;
+    }, 100);
   }
-  // End of refreshAllTables method
 };
 var RefreshTableNumbersSettingTab = class extends import_obsidian.PluginSettingTab {
   constructor(app, plugin) {

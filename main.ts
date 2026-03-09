@@ -213,6 +213,7 @@ export default class RefreshTableNumbersPlugin extends Plugin {
           }
           tableCount++;
         }
+        }
 
         // Safety: ensure advancement to avoid infinite loops 
         const nextPos = Math.max(i + 1, endLine + 1);
