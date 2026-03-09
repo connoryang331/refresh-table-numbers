@@ -30,6 +30,9 @@ A simple Obsidian plugin that refreshes sequence numbers in Markdown tables.
 2. Press `Ctrl+P` (or `Cmd+P` on macOS) to open the command palette
 3. Type "Refresh Table Numbers" and select the command
 
+![Refresh_table_numbers](https://github.com/user-attachments/assets/69ed3c54-518d-4e7c-8723-b03dbb5e3ff7)
+
+
 ### Keyboard Shortcut
 You can assign a keyboard shortcut to the "Refresh Table Numbers" command in Obsidian's keyboard settings.
 
