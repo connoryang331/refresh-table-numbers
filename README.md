@@ -1,14 +1,13 @@
 # Refresh Table Numbers Plugin for Obsidian
 
-A simple Obsidian plugin that automatically refreshes sequence numbers in Markdown tables.
+A simple Obsidian plugin that refreshes sequence numbers in Markdown tables.
 
 ## Features
 
-- **Auto-renumber tables**: Automatically refresh sequence numbers in table rows
+- **Refresh renumber tables**: Refresh sequence numbers in table rows
 - **Add sequence columns**: Insert a new sequence column to tables that don't have one
 - **Customizable header**: Configure the header text for the sequence column
 - **Alignment options**: Choose between left, center, or right alignment for the sequence column
-- **Smart detection**: Automatically detects table structures and handles various table formats
 
 ## Installation
 
@@ -30,7 +29,6 @@ A simple Obsidian plugin that automatically refreshes sequence numbers in Markdo
 1. Open a note with Markdown tables
 2. Press `Ctrl+P` (or `Cmd+P` on macOS) to open the command palette
 3. Type "Refresh Table Numbers" and select the command
-4. The plugin will automatically process all tables in the current note
 
 ### Keyboard Shortcut
 You can assign a keyboard shortcut to the "Refresh Table Numbers" command in Obsidian's keyboard settings.
@@ -85,12 +83,6 @@ The plugin processes tables in the following ways:
 | 2 | 3    | Third item  |
 | 3 | 2    | Second item |
 ```
-
-## Troubleshooting
-
-### Infinite Loop Issue
-The plugin has a built-in protection against infinite loops by using an `isProcessing` flag and a timeout to ensure the processing completes properly.
-
 ### Table Format Issues
 The plugin works best with standard Markdown tables. If you encounter issues with complex table formats, please report them on the GitHub repository.
 
