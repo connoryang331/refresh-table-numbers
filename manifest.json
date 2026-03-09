@@ -3,8 +3,8 @@
 	"name": "Refresh Table Numbers",
 	"version": "1.0.0",
 	"description": "Refresh markdown table number rows ",
-	"author": "You",
-	"authorUrl": "",
+	"author": "connoryang331",
+	"authorUrl": "https://github.com/connoryang331/refresh-table-numbers",
 	"isDesktopOnly": false,
 	"minAppVersion": "0.15.0"
 }
